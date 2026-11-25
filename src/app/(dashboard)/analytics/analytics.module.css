@@ -1,0 +1,27 @@
+.summary { display: grid; grid-template-columns: minmax(0,1.55fr) repeat(3,minmax(0,1fr)); gap: 11px; }
+.metric { min-width: 0; position: relative; overflow: hidden; border: 1px solid #2e2f34; border-radius: 13px; background: var(--panel); padding: 16px; display: flex; flex-direction: column; min-height: 157px; }
+.metric header { display: flex; align-items: center; gap: 8px; color: #c2c3cb; font-size: 12px; font-weight: 500; }
+.metric header svg { color: #dbcae6; }
+.metric:nth-child(3) svg { color: #e5bf99; }
+.metric:nth-child(4) svg { color: #bbd6c7; }
+.metric strong { margin-top: auto; font-size: clamp(29px, 3.2vw, 48px); line-height: 1.12; font-weight: 500; letter-spacing: -.055em; }
+.metric small { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.metric:first-child { background: #c3d4ef; border-color: transparent; color: #162030; }
+.metric:first-child header, .metric:first-child svg, .metric:first-child small { color: #35435a; }
+.metric img { position: absolute; width: 41%; max-height: 85%; object-fit: contain; right: -2%; bottom: -4%; transform: rotate(8deg); }
+.metric strong, .metric small, .metric header { position: relative; z-index: 1; }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.charts[hidden] { display: none; }
+.plot { background: var(--panel); border: 1px solid #303136; border-radius: 13px; padding: 19px; min-width: 0; }
+.plot h2 { font-size: 16px; font-weight: 580; letter-spacing: -.4px; }
+.caption { margin: 4px 0 18px; font-size: 12px; color: var(--muted); }
+.firstRecord { border-top: 1px solid var(--line); padding-top: 22px; }
+.firstRecord > span, .firstRecord p { font-size: 12px; color: var(--muted); }
+.firstRecord strong { display: block; font-size: 38px; font-weight: 480; letter-spacing: -.055em; color: #dbc5e0; margin: 4px 0 20px; }
+.firstRecord small { font-size: 15px; letter-spacing: 0; }
+.days { display: grid; grid-template-columns: repeat(30,minmax(0,1fr)); gap: 3px; margin-bottom: 10px; }
+.days i { height: 15px; background: #323238; border-radius: 3px; }
+.days i[data-recorded="true"] { background: #dbc5e0; }
+@media (max-width: 1000px) { .summary { grid-template-columns: repeat(2,minmax(0,1fr)); } .metric { min-height: 133px; } }
+@media (max-width: 1050px) { .charts { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 560px) { .summary { gap: 8px; } .metric { min-height: 122px; padding: 13px; } .metric img { width: 35%; bottom: 5%; } .plot { padding: 14px; } }

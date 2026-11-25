@@ -1,0 +1,172 @@
+{
+  "name": "devpet",
+  "displayName": "DevPet",
+  "description": "Your AI coding companion lives in VS Code. Earn XP, get warned before pushing secrets to GitHub.",
+  "version": "1.4.0",
+  "publisher": "devpet",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "pet",
+    "gamification",
+    "security",
+    "git",
+    "productivity"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "devpet.openDashboard",
+        "title": "DevPet: Open Dashboard"
+      },
+      {
+        "command": "devpet.syncXP",
+        "title": "DevPet: Sync XP Now"
+      },
+      {
+        "command": "devpet.setToken",
+        "title": "DevPet: Set API Token"
+      },
+      {
+        "command": "devpet.showStatus",
+        "title": "DevPet: Show Companion Status"
+      },
+      {
+        "command": "devpet.scanSecurity",
+        "title": "DevPet: Scan Project for Sensitive Files"
+      },
+      {
+        "command": "devpet.installPrePushHook",
+        "title": "DevPet: Install Git Pre-Push Security Hook"
+      },
+      {
+        "command": "devpet.pushHistory",
+        "title": "DevPet: Show Local Push History"
+      },
+      {
+        "command": "devpet.reviewOutgoing",
+        "title": "DevPet: Review Outgoing Changes"
+      },
+      {
+        "command": "devpet.checkAgain",
+        "title": "DevPet: Check Again",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "devpet.branchNote",
+        "title": "DevPet: Edit Branch Note"
+      },
+      {
+        "command": "devpet.resumeBranch",
+        "title": "DevPet: Where Was I?"
+      },
+      {
+        "command": "devpet.openBranchFile",
+        "title": "DevPet: Open Bookmarked File"
+      },
+      {
+        "command": "devpet.runCheck",
+        "title": "DevPet: Run Workspace Check"
+      },
+      {
+        "command": "devpet.reviewRelease",
+        "title": "DevPet: Review Release Contents"
+      }
+    ],
+    "configuration": {
+      "title": "DevPet",
+      "properties": {
+        "devpet.apiToken": {
+          "type": "string",
+          "default": "",
+          "description": "Use DevPet: Set API Token with a token from Settings \u2192 API on your server.",
+          "scope": "machine",
+          "deprecationMessage": "Use DevPet: Set API Token. Existing user tokens migrate into VS Code SecretStorage."
+        },
+        "devpet.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of your DevPet server. Use HTTPS outside localhost.",
+          "scope": "machine"
+        },
+        "devpet.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show companion in the status bar."
+        },
+        "devpet.securityScanEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic editor security scanning. Installed Git hooks run independently."
+        },
+        "devpet.securityScanOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Scan for sensitive content when files are saved."
+        },
+        "devpet.quietMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Keep review results in the DevPet view and silence its celebration and progress animation."
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "devpet.workspace",
+          "name": "DevPet",
+          "visibility": "collapsed"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "devpet.checkAgain",
+          "when": "view == devpet.workspace",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "npm run compile",
+    "package": "vsce package --allow-missing-repository",
+    "test": "npm run compile && node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/node-fetch": "2.6.13",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "4.1.1",
+    "typescript": "^5.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "2.7.0"
+  },
+  "overrides": {
+    "@vscode/vsce": {
+      "minimatch": "11.0.1"
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "DevPet interacts with Git and project files in trusted workspaces."
+    }
+  }
+}

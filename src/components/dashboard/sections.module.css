@@ -1,0 +1,26 @@
+.hatchStage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 14px;
+  padding: clamp(24px, 5vw, 60px);
+  padding-right: 45%;
+  background: #d9c8e1;
+  color: #261d2e;
+}
+.hatchEgg { position: absolute; inset: 0 0 0 auto; width: 44%; display: grid; place-items: center; z-index: -1; }
+.hatchEgg::before, .hatchEgg::after { content: ""; position: absolute; border: 1px solid #f2e8f5; border-radius: 50%; width: 68%; aspect-ratio: 1; }
+.hatchEgg::after { width: 84%; opacity: .6; }
+.hatchEgg span { font-size: clamp(72px, 8vw, 120px); transform: rotate(12deg); }
+.chatProfile, .profileStrip, .guildHighlight { border-radius: 13px; color: #1c2430; --ui-subtle: #465263; }
+.chatProfile { background: #c7d6e9; }
+.profileStrip { padding: 16px; background: #c7d6e9; }
+.guildHighlight { background: #c8d9d0; }
+.guildHighlight svg { color: #46594e; }
+.guildSymbol { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 50%; background: #d2dad3; font-size: 23px; }
+@media (max-width: 540px) {
+  .hatchStage { padding: 22px; }
+  .hatchEgg { position: relative; width: 100%; height: 112px; margin-bottom: 12px; }
+  .hatchEgg::before { width: 92px; }
+  .hatchEgg::after { width: 110px; }
+}
